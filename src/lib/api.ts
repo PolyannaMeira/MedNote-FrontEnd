@@ -1,4 +1,4 @@
-export const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+export const API_URL = import.meta.env.VITE_API_URL; 
 
 export async function transcribeAudio(audioBlob: Blob, language: "pt" | "en") {
 	try {
