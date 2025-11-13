@@ -20,7 +20,7 @@ Uma aplicação web moderna que utiliza inteligência artificial para auxiliar p
 
 
 ### Diagnóstico por IA
-![Diagnóstico](docs/images/diagnosis.png)
+![Diagnóstico](docs/images/diagnostico.png)
 
 
 ### Histórico de Consultas
