@@ -30,7 +30,6 @@ const DiagnoseView = forwardRef<DiagnoseHandle, Props>(
 		ref,
 	) => {
 		const [loading, setLoading] = useState(false);
-		const [streamText, setStreamText] = useState("");
 		const [result, setResult] = useState<DiagnosisResponse | null>(null);
 		const [showChat, setShowChat] = useState(false);
 
@@ -47,7 +46,6 @@ const DiagnoseView = forwardRef<DiagnoseHandle, Props>(
 			() => ({
 				reset: () => {
 					setLoading(false);
-					setStreamText("");
 					setResult(null);
 					setShowChat(false);
 				},
@@ -79,22 +77,31 @@ const DiagnoseView = forwardRef<DiagnoseHandle, Props>(
 			if (!transcript.trim()) return;
 			onBeforeFinalize?.(); 
 			setLoading(true);
-			setStreamText("");
 			setResult(null);
 
 			try {
+				let accumulatedData = "";
 				const stop = streamDiagnose(transcript, language, (chunk) => {
-					setStreamText((prev) => prev + chunk);
+					accumulatedData += chunk;
+					// Não atualizar streamText para evitar mostrar JSON bruto
 				});
+				
 				setTimeout(async () => {
-					if (!streamText) {
-						stop();
-						await doFallbackRequest();
-					} else {
-						
-						setLoading(false);
-						onFinalizeComplete?.();
+					stop();
+					
+					// Tentar processar dados acumulados do streaming
+					if (accumulatedData) {
+						try {
+							const parsedResult = JSON.parse(accumulatedData);
+							await saveAndReset(parsedResult);
+							return;
+						} catch (parseError) {
+							console.warn("Erro ao processar streaming, usando fallback:", parseError);
+						}
 					}
+					
+					// Fallback se streaming falhou
+					await doFallbackRequest();
 				}, 8000);
 			} catch {
 				await doFallbackRequest();
@@ -150,24 +157,6 @@ const DiagnoseView = forwardRef<DiagnoseHandle, Props>(
 									: "Analyzing symptoms with medical AI"}
 							</p>
 						</div>
-					</div>
-				</div>
-			)}
-
-			{streamText && (
-				<div className="bg-gradient-to-r from-slate-50 to-gray-50 border border-slate-200 rounded-xl p-6">
-					<div className="flex items-center gap-3 mb-4">
-						<div className="w-8 h-8 bg-slate-500 rounded-full flex items-center justify-center">
-							<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-							</svg>
-						</div>
-						<h4 className="text-lg font-semibold text-slate-800">
-							{language === "pt" ? "Análise em Tempo Real" : "Real-time Analysis"}
-						</h4>
-					</div>
-					<div className="bg-white border border-slate-200 rounded-lg p-4">
-						<pre className="whitespace-pre-wrap text-sm text-slate-700 leading-relaxed font-mono">{streamText}</pre>
 					</div>
 				</div>
 			)}
