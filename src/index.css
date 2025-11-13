@@ -1,0 +1,46 @@
+@import 'tailwindcss';
+
+/* CSS customizado adicional se necessário */
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.4;
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #f0fdf4, #eff6ff);
+  color: #111827;
+}
+
+/* Componentes customizados se necessário */
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
