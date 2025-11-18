@@ -437,7 +437,7 @@ const VideoCallCapture = forwardRef<VideoCallCaptureHandle, Props>(
           )}
         </div>
 
-        /* Erros com instruções detalhadas */
+        
         {error && (
           <div className="bg-red-50 border border-red-200 rounded-md p-4">
             <pre className="text-red-800 text-sm whitespace-pre-line font-sans">{error}</pre>
