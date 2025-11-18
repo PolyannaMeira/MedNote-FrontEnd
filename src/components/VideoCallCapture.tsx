@@ -383,8 +383,6 @@ const VideoCallCapture = forwardRef<VideoCallCaptureHandle, Props>(
 
   const statusText = () => {
     switch (status) {
-      case "idle":
-        return t.statusIdle;
       case "selecting":
         return "Selecionando aba...";
       case "recording":
@@ -408,7 +406,7 @@ const VideoCallCapture = forwardRef<VideoCallCaptureHandle, Props>(
               onClick={startCapture}
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md font-medium transition-colors"
             >
-              📹 {t.start}
+              {t.start}
             </button>
           )}
           
@@ -437,12 +435,9 @@ const VideoCallCapture = forwardRef<VideoCallCaptureHandle, Props>(
               )}
             </>
           )}
-        {/* Status */}
-        <div className="text-sm text-gray-600">
-          {status === "idle" ? t.statusIdle : statusText()}
         </div>
 
-        {/* Erros com instruções detalhadas */}
+        {/* Erros com instruções detalhadas */
         {error && (
           <div className="bg-red-50 border border-red-200 rounded-md p-4">
             <pre className="text-red-800 text-sm whitespace-pre-line font-sans">{error}</pre>
@@ -451,8 +446,6 @@ const VideoCallCapture = forwardRef<VideoCallCaptureHandle, Props>(
 
         {/* Instruções sempre visíveis */}
         <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
-          
-          </div>
           <div className="text-blue-700 text-xs leading-relaxed">
             {t.troubleshooting}
           </div>
