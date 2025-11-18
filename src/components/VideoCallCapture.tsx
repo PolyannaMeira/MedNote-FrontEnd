@@ -59,7 +59,6 @@ const VideoCallCapture = forwardRef<VideoCallCaptureHandle, Props>(
       duration: "Duração:",
       errorPermission: "❌ Permissão negada. INSTRUÇÕES:\n\n1️⃣ Clique em 'Capturar áudio da aba'\n2️⃣ Selecione a ABA do Google Meet (não 'Tela inteira')\n3️⃣ MARQUE a caixa 'Compartilhar áudio da aba'\n4️⃣ Clique em 'Compartilhar'\n\n💡 Se não funcionar, recarregue a página e tente novamente.",
       errorGeneral: "❌ Erro na captura. Verifique se o Meet está tocando áudio e tente novamente.",
-      statusIdle: "Clique no botão para capturar áudio da videochamada",
       statusRecording: "🔴 Capturando áudio da aba...",
       statusDone: "✅ Transcrição concluída.",
       troubleshooting: "💡 IMPORTANTE: Selecione a ABA do Meet e marque 'Compartilhar áudio da aba'. Se não funcionar, recarregue a página.",
@@ -73,7 +72,7 @@ const VideoCallCapture = forwardRef<VideoCallCaptureHandle, Props>(
       duration: "Duration:",
       errorPermission: "❌ Permission denied. INSTRUCTIONS:\n\n1️⃣ Click 'Capture tab audio'\n2️⃣ Select Google Meet TAB (not 'Entire screen')\n3️⃣ CHECK 'Share tab audio' checkbox\n4️⃣ Click 'Share'\n\n💡 If it doesn't work, reload the page and try again.",
       errorGeneral: "❌ Capture error. Check if Meet is playing audio and try again.",
-      statusIdle: "Click button to capture video call audio",
+      
       statusRecording: "🔴 Capturing tab audio...",
       statusDone: "✅ Transcription completed.",
       troubleshooting: "💡 IMPORTANT: Select Meet TAB and check 'Share tab audio'. If it fails, reload the page.",
